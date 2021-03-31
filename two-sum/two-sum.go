@@ -2,33 +2,28 @@ package main
 
 import "fmt"
 
-//func twoSum(nums []int, target int) []int {
-//	var indy []int
-//	indices := make([]int, len(nums))
-//
-//	fmt.Println(nums[0:])
-//
-//	for i,j := range indices {
-//		fmt.Println(i, j)
-//	}
-//
-//	return indy
-//}
-
-
-
-func main() {
-	nums := []int{3,2,3}
-	fmt.Println(twoSum(nums, 6))
+// twoSummer's pattern matching is limited and not scalable.
+func twoSummer(nums []int, target int) []int {
+	var indy []int
+	indices := make([]int, 2)
+	for i := 0; i < len(nums); i++ {
+		indices[0] = nums[i]
+		indices[1] = nums[i+1]
+		if indices[0] + indices[1] == target {
+			indy = append(indy, i, i+1)
+		} else if indices[0] + nums[i + 2] == target {
+			indy = append(indy, i, i+2)
+		}
+		continue
+	}
+	return indy
 }
 
-
+// twoSum's pattern matching is also flawed, goes out of bounds on #26
 func twoSum(nums []int, target int) []int {
 	var indices []int
 	for i, j := range nums {
 		nextIndex := i + 1
-		last := nums[len(nums)-1]
-
 		if j + nums[i + 1] == target {
 			indices = append(indices, i, nextIndex)
 			break
@@ -37,21 +32,8 @@ func twoSum(nums []int, target int) []int {
 	return indices
 }
 
-//func threeSum(nums []int, target int) []int {
-//	var indices []int
-//	for i := 0; i < len(nums); i++ {
-//		curInd := i
-//		curVal := nums[i]
-//		nextIndex := i + 1
-//		nextVal := nums[i + 1]
-//		fmt.Println(curInd, curVal)
-//		fmt.Println(nextIndex, nextVal)
-//
-//
-//		if nums[i] + nextVal == target {
-//			indices = append(indices, curInd, nextIndex)
-//			continue
-//		}
-//	}
-//	return indices
-//}
+
+func main() {
+	nums := []int{3,2,3}
+	fmt.Println(twoSum(nums, 6))
+}
