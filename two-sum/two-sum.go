@@ -32,12 +32,7 @@ func twoSummer(nums []int, target int) []int {
 	return indices
 }
 
-
 func main() {
 	nums := []int{3,2,3}
-	// 3 + 2
-	// 3 + 3
-	//
-	//
 	fmt.Println(twoSum(nums, 6))
 }
